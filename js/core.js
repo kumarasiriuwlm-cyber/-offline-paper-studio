@@ -8,6 +8,8 @@ export function normalize(payload){
  const fail=m=>{throw Error(`Question ${i+1}: ${m}`)};
  if(!/^[\w.-]{1,80}$/.test(q.id||'')||ids.has(q.id))fail('invalid or duplicate ID');ids.add(q.id);
  if(!types.includes(q.type)||typeof q.stem!=='string'||!q.stem.trim()||q.stem.length>12000)fail('invalid type or wording');
+ if(q.tags!==undefined&&(!Array.isArray(q.tags)||q.tags.some(t=>typeof t!=='string')))fail('tags must be text strings');
+ if(q.difficulty&&!['easy','medium','hard'].includes(q.difficulty))fail('invalid difficulty');
  const correct=q.correct==null?[]:Array.isArray(q.correct)?q.correct:[q.correct];
  if(q.type==='mcq'&&(!Array.isArray(q.options)||q.options.length<2||q.options.length>8||q.options.some(o=>typeof o!=='string'||!o.trim())||correct.some(n=>!Number.isInteger(n)||n<1||n>q.options.length)))fail('invalid options or answer');
  if(!Number.isFinite(+q.marks)||+q.marks<=0||+q.marks>100)fail('marks must be 0–100');
