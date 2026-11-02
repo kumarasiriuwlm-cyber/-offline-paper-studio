@@ -1,0 +1,225 @@
+{
+  "format": "PAPER_STUDIO_BANK_V1",
+  "bank": {
+    "id": "science11_demo_v01",
+    "name": "Grade 11 Science — Sample Bank",
+    "subject": "Science",
+    "grade": 11,
+    "version": "0.1-demo",
+    "verification": "illustrative"
+  },
+  "questions": [
+    {
+      "lesson": "Electricity",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "The SI unit of electric current is:",
+      "options": [
+        "Volt",
+        "Ohm",
+        "Ampere",
+        "Watt"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0001"
+    },
+    {
+      "lesson": "Electricity",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Which instrument measures potential difference?",
+      "options": [
+        "Ammeter",
+        "Voltmeter",
+        "Thermometer",
+        "Barometer"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0002"
+    },
+    {
+      "lesson": "Electricity",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "A 6 V supply is connected across a 3 Ω resistor. What current flows?",
+      "options": [
+        "0.5 A",
+        "2 A",
+        "9 A",
+        "18 A"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0003"
+    },
+    {
+      "lesson": "Electricity",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "In a simple series circuit, the current through each component is:",
+      "options": [
+        "Always zero",
+        "The same",
+        "Proportional to mass",
+        "Unrelated"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0004"
+    },
+    {
+      "lesson": "Electricity",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "A 12 V device draws 2 A. What is its power?",
+      "options": [
+        "6 W",
+        "10 W",
+        "14 W",
+        "24 W"
+      ],
+      "correct": 4,
+      "answer": "",
+      "marks": 1,
+      "id": "0005"
+    },
+    {
+      "lesson": "Electricity",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "State Ohm’s law and write the formula.",
+      "answer": "At constant physical conditions, current through an ohmic conductor is directly proportional to the potential difference. V = IR.",
+      "marks": 4,
+      "id": "0006"
+    },
+    {
+      "lesson": "Electricity",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "A resistor has resistance 5 Ω and carries 3 A. Calculate the potential difference across it.",
+      "answer": "V = IR = 3 × 5 = 15 V.",
+      "marks": 3,
+      "id": "0007"
+    },
+    {
+      "lesson": "Acids and Bases",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "A solution with pH 2 is usually classified as:",
+      "options": [
+        "Acidic",
+        "Neutral",
+        "Basic",
+        "A salt only"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0008"
+    },
+    {
+      "lesson": "Acids and Bases",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Which ion is associated with aqueous acids?",
+      "options": [
+        "OH⁻",
+        "H⁺ (or H₃O⁺)",
+        "Cl⁻ only",
+        "Na⁺ only"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0009"
+    },
+    {
+      "lesson": "Acids and Bases",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Which solution is typically neutral at 25°C?",
+      "options": [
+        "pH 1",
+        "pH 3",
+        "pH 7",
+        "pH 12"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0010"
+    },
+    {
+      "lesson": "Acids and Bases",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "Write a balanced equation for the neutralization reaction between HCl and NaOH.",
+      "answer": "HCl + NaOH → NaCl + H₂O",
+      "marks": 3,
+      "id": "0011"
+    },
+    {
+      "lesson": "Waves",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "What is the SI unit of frequency?",
+      "options": [
+        "Metre",
+        "Hertz",
+        "Newton",
+        "Watt"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0012"
+    },
+    {
+      "lesson": "Waves",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "A wave makes 20 oscillations in 4 seconds. What is its frequency?",
+      "options": [
+        "5 Hz",
+        "16 Hz",
+        "24 Hz",
+        "80 Hz"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0013"
+    },
+    {
+      "lesson": "Waves",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Sound cannot travel through:",
+      "options": [
+        "Air",
+        "Water",
+        "Steel",
+        "Vacuum"
+      ],
+      "correct": 4,
+      "answer": "",
+      "marks": 1,
+      "id": "0014"
+    },
+    {
+      "lesson": "Waves",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "Define frequency and its SI unit.",
+      "answer": "Number of complete oscillations per second; unit hertz (Hz).",
+      "marks": 2,
+      "id": "0015"
+    }
+  ]
+}

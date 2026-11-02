@@ -1,0 +1,266 @@
+{
+  "format": "PAPER_STUDIO_BANK_V1",
+  "bank": {
+    "id": "science10_demo_v01",
+    "name": "Grade 10 Science — Sample Bank",
+    "subject": "Science",
+    "grade": 10,
+    "version": "0.1-demo",
+    "verification": "illustrative"
+  },
+  "questions": [
+    {
+      "lesson": "Motion",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "What is the SI unit of speed?",
+      "options": [
+        "Metre",
+        "Metre per second",
+        "Second",
+        "Newton"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0001"
+    },
+    {
+      "lesson": "Motion",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "A cyclist travels 60 m in 12 s. What is the average speed?",
+      "options": [
+        "2 m/s",
+        "5 m/s",
+        "12 m/s",
+        "72 m/s"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0002"
+    },
+    {
+      "lesson": "Motion",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "A body at rest has a speed of:",
+      "options": [
+        "0 m/s",
+        "1 m/s",
+        "9.8 m/s",
+        "100 m/s"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0003"
+    },
+    {
+      "lesson": "Motion",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Which quantity includes both magnitude and direction?",
+      "options": [
+        "Distance",
+        "Speed",
+        "Velocity",
+        "Mass"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0004"
+    },
+    {
+      "lesson": "Motion",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "A car travels at constant speed of 10 m/s for 5 s. How far does it travel?",
+      "options": [
+        "2 m",
+        "15 m",
+        "50 m",
+        "100 m"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0005"
+    },
+    {
+      "lesson": "Motion",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "Explain the difference between distance and displacement.",
+      "answer": "Distance is total path length (scalar); displacement is change in position with direction (vector).",
+      "marks": 3,
+      "id": "0006"
+    },
+    {
+      "lesson": "Motion",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "A train travels 150 m in 10 s. Calculate its average speed and show your working.",
+      "answer": "v = s/t = 150/10 = 15 m/s",
+      "marks": 3,
+      "id": "0007"
+    },
+    {
+      "lesson": "Matter and Materials",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Which subatomic particle has a negative electric charge?",
+      "options": [
+        "Proton",
+        "Neutron",
+        "Electron",
+        "Nucleus"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0008"
+    },
+    {
+      "lesson": "Matter and Materials",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Water has the chemical formula:",
+      "options": [
+        "CO₂",
+        "H₂O",
+        "O₂",
+        "NaCl"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0009"
+    },
+    {
+      "lesson": "Matter and Materials",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Which of the following is a chemical element?",
+      "options": [
+        "Air",
+        "Salt water",
+        "Oxygen",
+        "Soil"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0010"
+    },
+    {
+      "lesson": "Matter and Materials",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "The atomic number of an element equals its number of:",
+      "options": [
+        "Neutrons",
+        "Protons",
+        "Electrons plus neutrons",
+        "Nucleons"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0011"
+    },
+    {
+      "lesson": "Matter and Materials",
+      "type": "structured",
+      "difficulty": "medium",
+      "stem": "State two differences between elements and compounds.",
+      "answer": "Elements contain one type of atom and cannot be chemically broken down; compounds contain chemically bonded elements and can be chemically decomposed.",
+      "marks": 4,
+      "id": "0012"
+    },
+    {
+      "lesson": "Cells",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Which organelle is the main site of photosynthesis in plant cells?",
+      "options": [
+        "Nucleus",
+        "Chloroplast",
+        "Mitochondrion",
+        "Ribosome"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0013"
+    },
+    {
+      "lesson": "Cells",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Which structure controls material entering and leaving a cell?",
+      "options": [
+        "Cell wall",
+        "Cell membrane",
+        "Vacuole",
+        "Chloroplast"
+      ],
+      "correct": 2,
+      "answer": "",
+      "marks": 1,
+      "id": "0014"
+    },
+    {
+      "lesson": "Cells",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Which organelle contains most of the genetic material in a eukaryotic cell?",
+      "options": [
+        "Nucleus",
+        "Golgi apparatus",
+        "Vacuole",
+        "Cell membrane"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0015"
+    },
+    {
+      "lesson": "Cells",
+      "type": "mcq",
+      "difficulty": "medium",
+      "stem": "Which of these is normally present in plant cells but not animal cells?",
+      "options": [
+        "Cell membrane",
+        "Nucleus",
+        "Cellulose cell wall",
+        "Cytoplasm"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0016"
+    },
+    {
+      "lesson": "Cells",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "Name three structures common to both typical plant and animal cells.",
+      "answer": "Cell membrane, cytoplasm and nucleus (also mitochondria and ribosomes).",
+      "marks": 3,
+      "id": "0017"
+    },
+    {
+      "lesson": "Cells",
+      "type": "essay",
+      "difficulty": "medium",
+      "stem": "Describe the main function of the cell membrane.",
+      "answer": "It forms a selective boundary controlling movement of substances into and out of the cell.",
+      "marks": 3,
+      "id": "0018"
+    }
+  ]
+}

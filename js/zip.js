@@ -1,0 +1,7 @@
+function ascii(str){return new TextEncoder().encode(str)}
+function crc32(data){let c=0xffffffff;for(let b of data){c^=b;for(let j=0;j<8;j++)c=(c>>>1)^((c&1)?0xedb88320:0)}return(c^0xffffffff)>>>0}
+function writeU16(v){return [v&255,(v>>>8)&255]}
+function writeU32(v){return [v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255]}
+function zipStore(files){let chunks=[],central=[],offset=0;for(let [name,content] of Object.entries(files)){let n=ascii(name),d=ascii(content),crc=crc32(d);let local=new Uint8Array([...writeU32(0x04034b50),...writeU16(20),...writeU16(0),...writeU16(0),...writeU16(0),...writeU16(0),...writeU32(crc),...writeU32(d.length),...writeU32(d.length),...writeU16(n.length),...writeU16(0),...n]);chunks.push(local,d);let c=new Uint8Array([...writeU32(0x02014b50),...writeU16(20),...writeU16(20),...writeU16(0),...writeU16(0),...writeU16(0),...writeU16(0),...writeU32(crc),...writeU32(d.length),...writeU32(d.length),...writeU16(n.length),...writeU16(0),...writeU16(0),...writeU16(0),...writeU16(0),...writeU32(0),...writeU32(offset),...n]);central.push(c);offset+=local.length+d.length}let centralSize=central.reduce((a,b)=>a+b.length,0);let end=new Uint8Array([...writeU32(0x06054b50),...writeU16(0),...writeU16(0),...writeU16(central.length),...writeU16(central.length),...writeU32(centralSize),...writeU32(offset),...writeU16(0)]);return new Blob([...chunks,...central,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})}
+
+export {zipStore};

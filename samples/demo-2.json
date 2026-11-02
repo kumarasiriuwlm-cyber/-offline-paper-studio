@@ -1,0 +1,239 @@
+{
+  "format": "PAPER_STUDIO_BANK_V1",
+  "bank": {
+    "id": "math10_demo_v01",
+    "name": "Grade 10 Mathematics — Sample Bank",
+    "subject": "Mathematics",
+    "grade": 10,
+    "version": "0.1-demo",
+    "verification": "illustrative"
+  },
+  "questions": [
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 3 + 7.",
+      "options": [
+        "7",
+        "12",
+        "10",
+        "16"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0001"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 8 + 9.",
+      "options": [
+        "14",
+        "19",
+        "17",
+        "23"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0002"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 12 + 5.",
+      "options": [
+        "14",
+        "19",
+        "17",
+        "23"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0003"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 15 + 4.",
+      "options": [
+        "16",
+        "21",
+        "19",
+        "25"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0004"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 7 + 13.",
+      "options": [
+        "17",
+        "22",
+        "20",
+        "26"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0005"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 14 + 6.",
+      "options": [
+        "17",
+        "22",
+        "20",
+        "26"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0006"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 9 + 11.",
+      "options": [
+        "17",
+        "22",
+        "20",
+        "26"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0007"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 16 + 3.",
+      "options": [
+        "16",
+        "21",
+        "19",
+        "25"
+      ],
+      "correct": 3,
+      "answer": "",
+      "marks": 1,
+      "id": "0008"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 2 × 6.",
+      "options": [
+        "12",
+        "15",
+        "11",
+        "17"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0009"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 3 × 4.",
+      "options": [
+        "12",
+        "15",
+        "11",
+        "17"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0010"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 5 × 7.",
+      "options": [
+        "35",
+        "38",
+        "34",
+        "40"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0011"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 8 × 2.",
+      "options": [
+        "16",
+        "19",
+        "15",
+        "21"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0012"
+    },
+    {
+      "lesson": "Arithmetic",
+      "type": "mcq",
+      "difficulty": "easy",
+      "stem": "Calculate 9 × 3.",
+      "options": [
+        "27",
+        "30",
+        "26",
+        "32"
+      ],
+      "correct": 1,
+      "answer": "",
+      "marks": 1,
+      "id": "0013"
+    },
+    {
+      "lesson": "Algebra",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "Solve the equation 2x + 3 = 11.",
+      "answer": "2x = 8, so x = 4.",
+      "marks": 3,
+      "id": "0014"
+    },
+    {
+      "lesson": "Geometry",
+      "type": "short",
+      "difficulty": "medium",
+      "stem": "Find the area of a rectangle 8 cm long and 5 cm wide.",
+      "answer": "Area = 8 × 5 = 40 cm².",
+      "marks": 3,
+      "id": "0015"
+    }
+  ]
+}
