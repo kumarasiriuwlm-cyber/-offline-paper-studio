@@ -10,3 +10,7 @@
 - Service-worker asset cache, manifest, local icons, automated tests and Pages workflow.
 
 Publishing and professional feature phases remain partial; see README limitations and test results.
+
+# v0.3 — Preview-first redesign
+
+Replaced the six-step wizard with one paper workspace. Details, question selection and appearance sit beside the live paper. A searchable question picker adds questions individually; each paper question has Edit, Up, Down, Replace and Remove controls. Page appearance updates immediately with four layout choices, option columns, question spacing and writing lines. PDF/Word and save controls stay beside the preview. Home now prioritizes new and recent papers. Supporting tools remain under More tools. Existing IndexedDB data and question-bank formats are unchanged. Print/export markup excludes editing controls.
