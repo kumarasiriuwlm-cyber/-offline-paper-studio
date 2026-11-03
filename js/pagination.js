@@ -1,0 +1,28 @@
+// A4 page preview measured in browser pixels (96 dpi). Print uses identical sheets.
+export async function paginate(container,{print=false}={}){
+ const article=container.querySelector('article.paper');if(!article)return;
+ await Promise.all([...article.querySelectorAll('img')].map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.onload=resolve;img.onerror=resolve})));
+ if(document.fonts?.ready)await document.fonts.ready;
+ const baseClass=article.className.replace('paper',''),header=article.querySelector('.document-header'),footer=article.querySelector('.document-footer'),limit=+article.dataset.pageLimit||0;
+ const nodes=[...article.querySelector('.document-body').children].map(n=>n.cloneNode(true));
+ if(print)nodes.forEach(n=>n.querySelectorAll('.question-tools').forEach(x=>x.remove()));
+ const wrap=document.createElement('div');wrap.className='page-stack';container.replaceChildren(wrap);let pages=[],body,sheet;
+ function newPage(){const frame=document.createElement('div');frame.className='page-frame';sheet=document.createElement('article');sheet.className='page-sheet paper '+baseClass;sheet.setAttribute('aria-label','A4 page '+(pages.length+1));frame.append(sheet);const head=pages.length===0?header.cloneNode(true):document.createElement('div');if(pages.length){head.className='running-header';head.textContent=header.querySelector('h1')?.textContent||'Paper Studio'}sheet.append(head);body=document.createElement('div');body.className='page-body';sheet.append(body);const foot=footer.cloneNode(true);foot.classList.add('running-footer');sheet.append(foot);wrap.append(frame);pages.push({sheet,body,foot,frame});return body}
+ function available(){return sheet.clientHeight-parseFloat(getComputedStyle(sheet).paddingTop)-parseFloat(getComputedStyle(sheet).paddingBottom)-sheet.firstElementChild.offsetHeight-sheet.lastElementChild.offsetHeight-18}
+ const fits=()=>body.scrollHeight<=available()+1;
+ function fragments(node){if(node.matches('.pq')){const root=node.querySelector(':scope > .question-node');if(root){const children=[...root.children];if(children.length>1){const tool=node.querySelector('.question-tools');return children.map((child,i)=>{const part=document.createElement('div');part.className=node.className+' continued-question';if(i===0&&tool)part.append(tool.cloneNode(true));if(i>0){const cap=document.createElement('small');cap.className='continued-label';cap.textContent='Question continued';part.append(cap)}part.append(child.cloneNode(true));return part})}}const content=node.querySelector('.content-block');if(content&&content.children.length>1)return [...content.children].map(c=>{const part=document.createElement('div');part.className='content-block';part.append(c.cloneNode(true));return part})}
+ if(node.matches('table')&&node.rows.length>2)return [...node.rows].slice(1).map(row=>{const t=node.cloneNode(false),b=document.createElement('tbody');b.append(node.rows[0].cloneNode(true),row.cloneNode(true));t.append(b);return t});
+ if(node.matches('.question-node')&&node.children.length>1)return [...node.children].map(c=>c.cloneNode(true));
+ return null}
+ function place(node,depth=0){if(node.classList.contains('manual-break')&&body.children.length)newPage();node.classList.remove('manual-break');body.append(node);if(fits())return;body.removeChild(node);if(body.children.length){newPage();body.append(node);if(fits())return;body.removeChild(node)}const parts=depth<8?fragments(node):null;if(parts?.length){for(const part of parts)place(part,depth+1);return}
+ // Split unusually long prose instead of clipping an entire paragraph.
+ const words=node.textContent.trim().split(/\s+/);if(words.length>40&&!node.querySelector('img,table')){let start=0;while(start<words.length){let lo=1,hi=words.length-start,best=0;const p=document.createElement('div');p.className='prose-fragment';body.append(p);while(lo<=hi){const mid=(lo+hi)>>1;p.textContent=words.slice(start,start+mid).join(' ');if(fits()){best=mid;lo=mid+1}else hi=mid-1}if(!best){p.remove();newPage();continue}p.textContent=words.slice(start,start+best).join(' ');start+=best;if(start<words.length)newPage()}return}
+ body.append(node);node.classList.add('oversize-content');}
+ newPage();for(let i=0;i<nodes.length;i++){const node=nodes[i];if(node.matches('.section-heading')&&nodes[i+1]){body.append(node.cloneNode(true),nodes[i+1].cloneNode(true));const combinedFits=fits();body.lastElementChild.remove();body.lastElementChild.remove();if(!combinedFits&&body.children.length)newPage()}place(node)}
+ // Remove the empty initial page when a large header was followed immediately by a forced break.
+ pages.forEach((p,i)=>{const span=document.createElement('span');span.className='page-number';span.textContent=`${i+1} / ${pages.length}`;p.foot.append(span)});
+ const total=pages.length,oversize=wrap.querySelectorAll('.oversize-content').length;
+ if(!print){const info=document.createElement('p');info.className='pagination-info';info.textContent=`${total} A4 page${total===1?'':'s'}${limit&&total>limit?` · Exceeds the ${limit}-page target — shorten content or adjust spacing.`:''}${oversize?' · An oversized item needs reducing; check before printing.':''}`;wrap.prepend(info)}
+ const scale=()=>{const width=container.clientWidth;for(const p of pages){const factor=Math.min(1,Math.max(.2,(width-4)/794));p.sheet.style.transform=`scale(${factor})`;p.sheet.style.transformOrigin='top left';p.frame.style.width=(794*factor)+'px';p.frame.style.height=(1123*factor)+'px'}};if(!print)scale();
+ return {pages:total,oversize,scale}
+}

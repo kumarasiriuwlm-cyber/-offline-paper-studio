@@ -1,29 +1,55 @@
-# Offline Paper Studio — v0.2 development preview
+# Offline Paper Studio v0.4 — Science document formats
 
-A dependency-free offline examination workspace for Sri Lankan teachers. No accounts, AI, APIs or server database. Device data lives in IndexedDB.
+[Open the application](https://kumarasiriuwlm-cyber.github.io/-offline-paper-studio/?v=0.4.0)
 
-## Try it
+A dependency-free offline authoring workspace for Sri Lankan Grade 10–11 teachers. Six document families and 28 structure presets: examinations, lesson tests, short papers, tutes/worksheets, short notes and past-question collections. A separate visual-template setting controls appearance.
 
-Open the GitHub Pages deployment when available. Go to **Question Banks → Load demonstration banks**, then **Create Paper**. Demo questions are illustrative and are not verified official examinations. All original prototype samples remain compatible.
+## Use on a phone
 
-## Development
+1. Open in Chrome. The 48 illustrative English sample questions load into an empty workspace.
+2. Choose **Create Paper**, then **What are you making?** and a ready-made structure.
+3. Check **Sections & instructions**. Choose the section where new content belongs.
+4. **Choose questions** from your banks, **Write a question**, or open **Add teaching content**.
+5. Edit beside each question/content block. Subquestions have their own wording, answers, marks, media and answer spaces.
+6. Open **Page appearance** to choose a visual style, option columns and answer spaces. Use the A4 page preview and format-check messages.
+7. Save, print/PDF, download Word, or print an MCQ answer grid. Keep regular complete backups.
 
-Serve this directory over HTTP for development (`python -m http.server`). HTTPS or localhost is required for service workers and PWA installation. Run `npm test` with Node 22+. There are no runtime dependencies or build step. GitHub Actions runs tests and publishes Pages.
+The Home screen has a mixed-content Science example with a note, editable table, worked example, circuit diagram and nested questions. It is illustrative, not an official examination.
 
-Modules: `js/core.js` validates banks and selects questions; `js/db.js` provides transactions and backup; `js/app.js` contains screen controllers; `js/export.js` handles print and DOCX; `js/zip.js` creates OOXML ZIPs. Add layouts in the template registry. `prototype.html` preserves the starting prototype unchanged. Do not commit private profiles or commercial banks.
+## Formats
 
-## User workflow
+- Examination: O/L Science I & II, I only, II A & B, A practice, B practice, term test, original past-paper reconstruction.
+- Lesson test: unit, multi-lesson revision, structured practice.
+- Short paper: mixed short test, MCQ practice, classroom quiz, homework.
+- Tute: theory, revision, guided worksheet, self-learning pack, practical worksheet.
+- Short notes: lesson note, one-page summary, formula/units, comparison, diagram revision, mind map/process, worked examples.
+- Collection: topic-wise and year-wise past questions.
 
-1. Import a JSON question bank or load demonstrations.
-2. Create a teacher profile if needed.
-3. Create a paper, choose lessons and configure question counts.
-4. Assemble, edit, reorder or replace questions. Drafts save locally.
-5. Choose Export, preview paper / scheme / combined, then print to PDF or download DOCX.
-6. Download complete backups regularly. Restore replaces local workspace atomically.
-7. On supported Chrome devices, install via the browser menu after the initial HTTPS visit. Wait for resources to cache before disconnecting.
+Presets are editable starting structures, not Department of Examinations certification. Changing formats preserves content and moves it into the first section; reassign items in their editor. Page-limit and missing-question checks warn without preventing drafts.
 
-## Status and limitations
+## Developer guide
 
-This is a development preview, not the completed commercial release. Core screens, import, search, wizard, edits, history, branding text/logo, four print presets, backup, themes, Sinhala navigation and PWA resources are implemented. Full Sinhala localization, collections, duplicate-content review, distribution quotas, advanced rich content, QR/photo branding, configurable pagination and image-capable DOCX remain unfinished. Text is stored as Unicode plain text, including Unicode subscripts/superscripts; HTML is escaped. DOCX retains text/options but explicitly omits embedded diagrams. PDF uses the native print dialog, not an automatic file converter. Device fonts determine Sinhala rendering.
+No runtime downloads, CDN, API or server database. Serve the repository root (HTTPS/localhost for PWA). Node 22+: `npm test`. No install/build step required. GitHub Actions runs the tests and deploys Pages.
 
-See [test results](docs/TEST_RESULTS.md), [bank format](docs/BANK_FORMAT.md), and [release notes](docs/RELEASE_NOTES.md).
+| Module | Responsibility |
+|---|---|
+| `formats.js` | Presets, section grouping, nested totals, optional marks, source metadata, validation |
+| `authoring.js` | Section, tree-question, teaching-content and table editors |
+| `pagination.js` | Measured A4 preview, continuation and print sheets |
+| `core.js` | Compatible bank normalization, filters, deterministic selection, backups |
+| `db.js` | IndexedDB transactions, bank updates and schema upgrade |
+| `export.js` / `zip.js` | HTML rendering and editable OOXML with tables/images/footer fields |
+| `app.js` | Navigation, controller state and persistence |
+
+The V1 paper `questions` array remains the ordered content list for compatibility. A missing `kind` means question; other kinds are note, example, table, diagram, activity and heading. Each item optionally references `sectionId`. Questions can have recursive `children`. Parent marks are computed from their children. Existing plain papers still open without migration. Imported source questions are copied into drafts; edits do not change bank originals. Only usage metadata is written back.
+
+## Current limits
+
+- Plain Unicode science expressions are supported; this is not a LaTeX/ChemDraw editor. Use Unicode or upload a diagram for complex notation and mind maps.
+- Word includes real editable text/tables and embedded images, but does not reproduce every PDF style, graph grid, image wrap or exact browser page break. Fonts and Word versions can alter pagination. Microsoft Word visual QA has not been performed.
+- Browser printing generates PDF through the system dialog. A4 preview measures content and flags oversized items; exceptionally large media/tables require resizing. Editing controls occupy screen space, so print pagination is recalculated without them.
+- Original past-paper reconstruction preserves numbering/source metadata. It does not OCR/import an arbitrary scanned PDF or supply missing official questions/answers. No commercial or private banks are committed.
+- Complete backups remain essential. Data is local to the browser/device. Physical Android airplane-mode installation and Windows print-device verification remain to be completed.
+- Sinhala content and bilingual family labels are supported; full Sinhala interface translation remains unfinished.
+
+See [bank format](docs/BANK_FORMAT.md), [v0.4 tests](docs/TEST_RESULTS.md), and [release notes](docs/RELEASE_NOTES.md).

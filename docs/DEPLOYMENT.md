@@ -1,7 +1,7 @@
-# Deployment checkpoint
+# Deployment
 
-Source is committed to `main`; automated tests run before deployment. Initial workflow run 41457819501 passed tests but failed configuring Pages because the repository has not enabled Pages and GITHUB_TOKEN lacks administration permission to create the site.
+GitHub Pages was enabled by the repository owner and is operational. The workflow in `.github/workflows/pages.yml` runs Node tests, uploads the static app and deploys Pages on each main-branch push. There is no API, account server, external runtime dependency or Windows/Android build in this release.
 
-One repository setting is required: **Settings → Pages → Build and deployment → Source → GitHub Actions**. Then rerun the existing workflow from Actions. No code, terminal or Windows computer is needed. The connected GitHub tools cannot change this administration setting. The available browser session is signed out, so it cannot make that change on the owner's behalf without sign-in.
+Live entry: https://kumarasiriuwlm-cyber.github.io/-offline-paper-studio/?v=0.4.0
 
-Do not consider PWA installation or airplane-mode behavior verified until the HTTPS deployment is running. The HTTP preview cannot register service workers because it is not a secure context. The app itself has no network dependencies. The Pages workflow will publish the repository root; private teacher data and commercial banks must never be committed.
+Runtime modules and the stylesheet use a release query identifier, and the service worker precaches all matching paths. An existing cached tab may need to be closed/reopened to activate the new release. Data remains in the same IndexedDB database.

@@ -1,20 +1,21 @@
+import {validateNode,isQuestion} from './formats.js?v=0.4.0';
 export const types=['mcq','short','structured','essay','matching'];
 export const clone=x=>structuredClone(x);
 export function normalize(payload){
  if(payload?.format!=='PAPER_STUDIO_BANK_V1'||!payload.bank||!Array.isArray(payload.questions))throw Error('Unsupported bank format');
  const b=payload.bank;if(!/^[\w.-]{2,70}$/.test(b.id||'')||!b.name||!b.subject||!Number.isInteger(+b.grade)||+b.grade<1||+b.grade>13||!b.version)throw Error('Invalid bank metadata');
- if(payload.questions.length>20000)throw Error('Maximum 20,000 questions per bank');
- const ids=new Set();const questions=payload.questions.map((q,i)=>{
+ if(payload.contentBlocks!==undefined&&!Array.isArray(payload.contentBlocks))throw Error('contentBlocks must be an array');const records=[...payload.questions,...(payload.contentBlocks||[])];if(records.length>20000)throw Error('Maximum 20,000 questions per bank');
+ const ids=new Set();const questions=records.map((q,i)=>{
  const fail=m=>{throw Error(`Question ${i+1}: ${m}`)};
  if(!/^[\w.-]{1,80}$/.test(q.id||'')||ids.has(q.id))fail('invalid or duplicate ID');ids.add(q.id);
- if(!types.includes(q.type)||typeof q.stem!=='string'||!q.stem.trim()||q.stem.length>12000)fail('invalid type or wording');
+ if((isQuestion(q)&&!types.includes(q.type))||typeof q.stem!=='string'||!q.stem.trim()||q.stem.length>12000)fail('invalid type or wording');
  if(q.tags!==undefined&&(!Array.isArray(q.tags)||q.tags.some(t=>typeof t!=='string')))fail('tags must be text strings');
  if(q.difficulty&&!['easy','medium','hard'].includes(q.difficulty))fail('invalid difficulty');
  const correct=q.correct==null?[]:Array.isArray(q.correct)?q.correct:[q.correct];
- if(q.type==='mcq'&&(!Array.isArray(q.options)||q.options.length<2||q.options.length>8||q.options.some(o=>typeof o!=='string'||!o.trim())||correct.some(n=>!Number.isInteger(n)||n<1||n>q.options.length)))fail('invalid options or answer');
- if(!Number.isFinite(+q.marks)||+q.marks<=0||+q.marks>100)fail('marks must be 0–100');
+ if(isQuestion(q)&&q.type==='mcq'&&(!Array.isArray(q.options)||q.options.length<2||q.options.length>8||q.options.some(o=>typeof o!=='string'||!o.trim())||correct.some(n=>!Number.isInteger(n)||n<1||n>q.options.length)))fail('invalid options or answer');
+ if(isQuestion(q)&&(!Number.isFinite(+q.marks)||+q.marks<0||+q.marks>1000))fail('marks must be 0–100');
  if(q.image&&!/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(q.image))fail('image must be embedded PNG, JPEG or WebP');
- return {...q,qid:b.id+'::'+q.id,bankId:b.id,grade:String(b.grade),subject:b.subject,language:q.language||b.language||'en',lesson:q.lesson||'General',difficulty:q.difficulty||'medium',correct,options:q.options||[],marks:+q.marks,verification:q.verification||'unverified',tags:q.tags||[],used:0};
+ validateNode(q);return {...q,qid:b.id+'::'+q.id,bankId:b.id,grade:String(b.grade),subject:b.subject,language:q.language||b.language||'en',lesson:q.lesson||'General',difficulty:q.difficulty||'medium',correct,options:q.options||[],marks:isQuestion(q)?+q.marks:0,verification:q.verification||'unverified',tags:q.tags||[],used:0};
  });return {bank:{...b,grade:String(b.grade),count:questions.length,installedAt:new Date().toISOString()},questions};
 }
 export function filterQuestions(qs,f={}){return qs.filter(q=>['grade','subject','type','difficulty','lesson','language'].every(k=>!f[k]||f[k]==='all'||String(q[k])===String(f[k]))&&(!f.lessons?.length||f.lessons.includes(q.lesson))&&(!f.search||[q.stem,q.answer,q.lesson,...(q.tags||[])].join(' ').toLocaleLowerCase().includes(f.search.toLocaleLowerCase())))}
@@ -24,5 +25,5 @@ export function assemble(qs,config){let seed=+config.seed||1;const random=()=>{s
  chosen.push(...eligible.slice(0,count));}
  if(!chosen.length)throw Error('Choose at least one question');if(config.targetMarks&&chosen.reduce((s,q)=>s+q.marks,0)!==+config.targetMarks)throw Error('Selected marks do not match target. Adjust counts or clear target marks.');return clone(chosen);
 }
-export function validateBackup(b){if(b?.format!=='PAPER_STUDIO_BACKUP_V1'||!b.data)throw Error('Unsupported backup');for(const s of ['questions','banks','papers','profiles','settings']){if(!Array.isArray(b.data[s]))throw Error('Missing '+s);const seen=new Set();for(const r of b.data[s]){const k=s==='questions'?r.qid:r.id;if(typeof k!=='string'||seen.has(k))throw Error('Invalid/duplicate '+s+' key');seen.add(k);if(s==='papers'&&!Array.isArray(r.questions))throw Error('Invalid paper');if(s==='questions'&&(!types.includes(r.type)||typeof r.stem!=='string'||!Number.isFinite(r.marks)))throw Error('Invalid question');}}return b.data}
+export function validateBackup(b){if(b?.format!=='PAPER_STUDIO_BACKUP_V1'||!b.data)throw Error('Unsupported backup');for(const s of ['questions','banks','papers','profiles','settings']){if(!Array.isArray(b.data[s]))throw Error('Missing '+s);const seen=new Set();for(const r of b.data[s]){const k=s==='questions'?r.qid:r.id;if(typeof k!=='string'||seen.has(k))throw Error('Invalid/duplicate '+s+' key');seen.add(k);if(s==='papers'){if(!Array.isArray(r.questions))throw Error('Invalid paper');for(const q of r.questions)validateNode(q);if(r.sections&&(!Array.isArray(r.sections)||r.sections.some(s=>typeof s.id!=='string')))throw Error('Invalid sections');}if(s==='questions')validateNode(r);}}return b.data}
 export const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
