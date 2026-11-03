@@ -1,3 +1,14 @@
+# v0.5.0 — Simple format-first creation
+
+- Choose document family and preset before entering the paper workspace. Automatically apply the structure and time.
+- Keep essential question, title, time and output actions visible; advanced sections, content and design live under More edits.
+- Configurable borders, header/footer messages, teacher/contact visibility and multilingual page numbering.
+- Student-text clipboard copy with selectable fallback, combined teacher-text copy and text download.
+- Google Apps Script export for an unpublished Google Forms quiz; resumable generation and manual-review guidance.
+- English, Sinhala and Tamil UI catalogs; reversible language switching; supplied bank language variants with isolated editable snapshots.
+- New modules cached locally by the service worker; existing IndexedDB data and saved papers retained.
+- 24 automated tests pass. See TEST_RESULTS.md for execution limits.
+
 # v0.2 — Development preview
 
 - Modular, dependency-free application with ten navigation sections.

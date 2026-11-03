@@ -19,3 +19,7 @@ Optional `contentBlocks` is an array of separately identified teaching records w
 Paper documents optionally have `family`, `preset`, `sections`, `activeSection`, `instructions`, `paperCode`, `term`, `year`, `showSource` and `sourceMode`. Sections have stable IDs, title/instructions, rule all/choose, choose count, targetCount, optional allowedType, answerMode, starting number and page-break setting. `questions` remains the ordered list of all content; each record has a sectionId. Legacy orphan section IDs render in the first section rather than disappearing.
 
 `source` may be a string or `{exam,year,paper,question,publisher}`. `originalNumber` can retain original source numbering in original mode. Source records are not OCR results or proof of permission to redistribute content.
+
+## Optional language variants
+
+A question can include `translations: {"si": {"stem": "ප්‍රශ්නය", "options": ["පළමු", "දෙවන"], "answer": "පිළිතුර"}}` (also `en` and `ta`). Translated option arrays must have the same length and order as the original. Correct-answer indices and marks are shared. The importer validates translated text and rich content. Paper selection uses the chosen question language when a supplied translation exists; no online translation is invoked. Paper edits are stored in the paper snapshot, leaving the bank record unchanged.

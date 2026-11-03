@@ -1,18 +1,18 @@
-# Offline Paper Studio v0.4 — Science document formats
+# Offline Paper Studio v0.5 — Choose a format and start
 
-[Open the application](https://kumarasiriuwlm-cyber.github.io/-offline-paper-studio/?v=0.4.1)
+[Open the application](https://kumarasiriuwlm-cyber.github.io/-offline-paper-studio/?v=0.5.0)
 
 A dependency-free offline authoring workspace for Sri Lankan Grade 10–11 teachers. Six document families and 28 structure presets: examinations, lesson tests, short papers, tutes/worksheets, short notes and past-question collections. A separate visual-template setting controls appearance.
 
 ## Use on a phone
 
 1. Open in Chrome. The 48 illustrative English sample questions load into an empty workspace.
-2. Choose **Create Paper**, then **What are you making?** and a ready-made structure.
-3. Check **Sections & instructions**. Choose the section where new content belongs.
-4. **Choose questions** from your banks, **Write a question**, or open **Add teaching content**.
-5. Edit beside each question/content block. Subquestions have their own wording, answers, marks, media and answer spaces.
-6. Open **Page appearance** to choose a visual style, option columns and answer spaces. Use the A4 page preview and format-check messages.
-7. Save, print/PDF, download Word, or print an MCQ answer grid. Keep regular complete backups.
+2. Tap **Create paper**, choose a document family and then a ready-made format. Grade and question language are selected here; a language with available bank questions is suggested.
+3. Tap **Choose questions** or **Write a question**. Edit wording, marks or answers beside the question on the preview.
+4. Tap **Print / PDF**, **Word** or **Copy all text**. Your paper saves on this device.
+5. Open **More edits** only when needed: borders, page numbers, header/footer messages, teacher profiles, sections, content blocks and detailed layout settings.
+6. Use the language selector at the top for English, Sinhala or Tamil. Bank questions and teacher-written text retain their authored wording; supplied question translations are supported.
+7. Keep regular complete backups using **More tools → Backup and Restore**.
 
 The Home screen has a mixed-content Science example with a note, editable table, worked example, circuit diagram and nested questions. It is illustrative, not an official examination.
 
@@ -53,3 +53,13 @@ The V1 paper `questions` array remains the ordered content list for compatibilit
 - Sinhala content and bilingual family labels are supported; full Sinhala interface translation remains unfinished.
 
 See [bank format](docs/BANK_FORMAT.md), [v0.4 tests](docs/TEST_RESULTS.md), and [release notes](docs/RELEASE_NOTES.md).
+
+## Sharing and page design (v0.5)
+
+**More edits → Headers, footers & borders** controls five border treatments, color/thickness, header alignment and messages, continuation header, footer message, teacher/contact/logo visibility, numbering language (English/Sinhala/Tamil), optional local digits, alignment, numbering style and starting number. These settings are saved with each paper and included in backup. Browser print uses the measured preview sheets. Word uses actual running headers, footers, PAGE/NUMPAGES fields and OOXML page borders; local digit shaping depends on the Word environment. Word approximates the accent frame with a standard border.
+
+**Copy all text** copies the student paper; **More exports → Copy with marking scheme** explicitly includes teacher answers. Clipboard restrictions fall back to a selectable text dialog. Diagrams are represented by captions in plain text; use PDF/Word for actual images.
+
+**Google Form** exports a Google Apps Script, not a direct signed-in API integration. Copy/download the script, open a new project at https://script.google.com/home/start, replace the starter code and run `createPaperForm`. Authorize your own account. The script creates an **unpublished** quiz and logs the edit URL. A rerun resumes or reopens the same form. It supports nested question headings, single-answer MCQ keys, written response items, diagrams and table text. Review manual grading, optional-question instructions, accepted alternatives, response collection and answer-release settings before publishing. The script contains teacher answers; do not give it to students. Google account execution was not available in automated QA; script behavior was tested against a Forms mock.
+
+App-owned interface copy is localized locally, including navigation, presets, editing dialogs and common validation messages. Custom titles, messages, bank questions and notes are not machine-translated. Banks may supply `translations.en`, `.si`, `.ta` fields for wording/options/answers; translations must preserve option order and correct-answer indices. Imported originals remain unchanged when a teacher edits a translated paper snapshot.
