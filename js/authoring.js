@@ -1,5 +1,5 @@
-import {escape as e} from './core.js?v=0.4.0';
-import {families,presets,groups,checkDocument,marksSummary,validateNode} from './formats.js?v=0.4.0';
+import {escape as e} from './core.js?v=0.4.1';
+import {families,presets,groups,checkDocument,marksSummary,validateNode} from './formats.js?v=0.4.1';
 const input=(name,label,value='',type='text')=>`<label>${label}<input name="${name}" type="${type}" value="${e(value)}"></label>`;
 const area=(name,label,value='')=>`<label>${label}<textarea name="${name}">${e(value)}</textarea></label>`;
 const select=(name,label,values,value)=>`<label>${label}<select name="${name}">${values.map(v=>{const [key,label]=Array.isArray(v)?v:[v,v];return `<option value="${e(key)}" ${String(key)===String(value)?'selected':''}>${e(label)}</option>`}).join('')}</select></label>`;

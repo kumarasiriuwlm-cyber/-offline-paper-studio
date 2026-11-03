@@ -1,4 +1,4 @@
-import {validateNode,isQuestion} from './formats.js?v=0.4.0';
+import {validateNode,isQuestion} from './formats.js?v=0.4.1';
 export const types=['mcq','short','structured','essay','matching'];
 export const clone=x=>structuredClone(x);
 export function normalize(payload){

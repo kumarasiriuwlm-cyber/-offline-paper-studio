@@ -1,6 +1,6 @@
 # Offline Paper Studio v0.4 — Science document formats
 
-[Open the application](https://kumarasiriuwlm-cyber.github.io/-offline-paper-studio/?v=0.4.0)
+[Open the application](https://kumarasiriuwlm-cyber.github.io/-offline-paper-studio/?v=0.4.1)
 
 A dependency-free offline authoring workspace for Sri Lankan Grade 10–11 teachers. Six document families and 28 structure presets: examinations, lesson tests, short papers, tutes/worksheets, short notes and past-question collections. A separate visual-template setting controls appearance.
 
@@ -46,7 +46,7 @@ The V1 paper `questions` array remains the ordered content list for compatibilit
 ## Current limits
 
 - Plain Unicode science expressions are supported; this is not a LaTeX/ChemDraw editor. Use Unicode or upload a diagram for complex notation and mind maps.
-- Word includes real editable text/tables and embedded images, but does not reproduce every PDF style, graph grid, image wrap or exact browser page break. Fonts and Word versions can alter pagination. Microsoft Word visual QA has not been performed.
+- Word includes real editable text/tables and embedded images, but does not reproduce every PDF style, image wrap or exact browser page break. Fonts and Word versions can alter pagination. Microsoft Word visual QA has not been performed.
 - Browser printing generates PDF through the system dialog. A4 preview measures content and flags oversized items; exceptionally large media/tables require resizing. Editing controls occupy screen space, so print pagination is recalculated without them.
 - Original past-paper reconstruction preserves numbering/source metadata. It does not OCR/import an arbitrary scanned PDF or supply missing official questions/answers. No commercial or private banks are committed.
 - Complete backups remain essential. Data is local to the browser/device. Physical Android airplane-mode installation and Windows print-device verification remain to be completed.

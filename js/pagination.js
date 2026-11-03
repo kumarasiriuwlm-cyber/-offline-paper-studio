@@ -23,6 +23,6 @@ export async function paginate(container,{print=false}={}){
  pages.forEach((p,i)=>{const span=document.createElement('span');span.className='page-number';span.textContent=`${i+1} / ${pages.length}`;p.foot.append(span)});
  const total=pages.length,oversize=wrap.querySelectorAll('.oversize-content').length;
  if(!print){const info=document.createElement('p');info.className='pagination-info';info.textContent=`${total} A4 page${total===1?'':'s'}${limit&&total>limit?` · Exceeds the ${limit}-page target — shorten content or adjust spacing.`:''}${oversize?' · An oversized item needs reducing; check before printing.':''}`;wrap.prepend(info)}
- const scale=()=>{const width=container.clientWidth;for(const p of pages){const factor=Math.min(1,Math.max(.2,(width-4)/794));p.sheet.style.transform=`scale(${factor})`;p.sheet.style.transformOrigin='top left';p.frame.style.width=(794*factor)+'px';p.frame.style.height=(1123*factor)+'px'}};if(!print)scale();
+ const scale=()=>{const cs=getComputedStyle(container),width=container.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);for(const p of pages){const factor=Math.min(1,Math.max(.2,(width-4)/794));p.sheet.style.transform=`scale(${factor})`;p.sheet.style.transformOrigin='top left';p.frame.style.width=(794*factor)+'px';p.frame.style.height=(1123*factor)+'px'}};if(!print){scale();const observer=new ResizeObserver(()=>{if(container.isConnected)scale();else observer.disconnect()});observer.observe(container)}
  return {pages:total,oversize,scale}
 }
